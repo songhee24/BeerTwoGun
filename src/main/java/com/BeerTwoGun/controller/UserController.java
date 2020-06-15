@@ -14,8 +14,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+//    @PostMapping
+//    public User save(@RequestBody User user){
+//        return userService.save(user);
+//    }
+
     @PostMapping
-    public User save(@RequestBody User user){
-        return userService.save(user);
+    public User crateUser(@RequestBody User user) {
+        return userService.createUser(user);
     }
 }

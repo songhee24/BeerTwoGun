@@ -2,6 +2,7 @@ package com.BeerTwoGun.entity;
 
 import com.BeerTwoGun.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -9,7 +10,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "family_member")
+@Table(name = "person")
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,7 +18,7 @@ import java.time.LocalDate;
 @Setter
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class FamilyMember {
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
@@ -31,7 +32,6 @@ public class FamilyMember {
     @Column(name = "last_name")
     String lastName;
 
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "birth_date")
     LocalDate birthDate;
@@ -44,6 +44,7 @@ public class FamilyMember {
     String inn;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    Person personId;
+    @JsonIgnore
+    @JoinColumn(name = "tree_id")
+    Tree tree;
 }

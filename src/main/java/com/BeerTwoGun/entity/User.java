@@ -1,46 +1,56 @@
 package com.BeerTwoGun.entity;
 
-import com.BeerTwoGun.enums.Gender;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.Collection;
 
-@Entity
-@Table(name = "t_user")
-
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
+@Entity
+@Table(name = "user_tree")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Column(name = "member")
-    String member;
+    @NotNull
+    @Column(name = "user_name")
+    String userName;
 
-    @Column(name = "first_name")
-    String firstName;
+    @NotNull
+    @Column(name = "email")
+    String email;
 
-    @Column(name = "last_name")
-    String lastName;
+    @NotNull
+    @Column(name = "password")
+    String password;
+    @NotNull
+    @Column(name = "confirm_password")
+    String confirmPassword;
 
-    @Column(name = "birth_date")
-    Date birthDate;
-
-    @Column(name = "gender")
-    @Enumerated(EnumType.STRING)
-    Gender gender;
-
-    @Column(name = "inn")
-    String inn;
+    // TODO вспомнить зачем я это сюда добавлял
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JsonIgnore
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
+    )
+    private Collection<Role> roles;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "tree_id")
-    Tree tree;
+    Tree treeId;
 }

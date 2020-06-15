@@ -15,4 +15,9 @@ public class FamilyMemberController {
     public FamilyMember save(@RequestBody  FamilyMember familyMember){
         return familyMemberIService.save(familyMember);
     }
+
+    @PostMapping("/create")
+    public FamilyMember createMember(@RequestBody FamilyMember familyMember){
+        return familyMemberIService.createMember(familyMember);
+    }
 }

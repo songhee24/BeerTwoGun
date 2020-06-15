@@ -14,6 +14,11 @@ public class TreeServiceImpl implements TreeService {
     private TreeRepository treeRepository;
 
     @Override
+    public Tree createTree(Tree tree) {
+        return null;
+    }
+
+    @Override
     public Tree save(Tree item) {
         return treeRepository.save(item);
     }
