@@ -24,17 +24,13 @@ public class Tree {
     @Column(name = "id", nullable = false, unique = true)
     private Long Id;
 
-    @OneToMany(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "family_members")
-    List<FamilyMember> familyMembers;
 
     @OneToOne
-    @JoinColumn(name = "person")
-    Person person;
-
-    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "parent_id")
-    @NotFound(action = NotFoundAction.IGNORE)
-    Tree tree;
+    Person parentId;
+
+    @OneToOne
+    @JoinColumn(name = "child_id")
+    Person child_id;
 
 }
