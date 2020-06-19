@@ -40,9 +40,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic().and().authorizeRequests()
+                .antMatchers(HttpMethod.GET,"/","/home").permitAll()
                 .antMatchers(HttpMethod.POST, "/user/create").permitAll()
-                .antMatchers(HttpMethod.POST,"/user/save").permitAll()
-                .antMatchers(HttpMethod.GET,"/football").hasRole("USER")
+                .antMatchers(HttpMethod.POST,"/user/login").permitAll()
+                .antMatchers(HttpMethod.POST,"/tree/create").hasRole("USER")
                 .antMatchers("/admin").hasRole("ADMIN")
                 .and().csrf().disable();
 

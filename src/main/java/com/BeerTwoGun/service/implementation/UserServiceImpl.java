@@ -80,4 +80,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return save(user);
     }
+
+    @Override
+    public User login(User user) {
+        User userFromBd =findByUserName(user.getUsername());
+        System.out.println("LOG_user from bd: " + userFromBd);
+        if (userFromBd == null) {
+            return null;
+        }
+        if (
+                user.getPassword().equals(userFromBd.getConfirmPassword())
+        ) {
+            return userFromBd;
+        }
+        return null;
+    }
 }

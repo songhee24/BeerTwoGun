@@ -2,8 +2,8 @@
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org">
 
-<link rel="stylesheet" href="../../static/register.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<link th:href="@{/register.css}" rel="stylesheet">
+<!--href="../../static/register.css"-->
 
 
 <head>
@@ -12,18 +12,21 @@
 </head>
 <body>
 <div class="container">
-    <div class="signup"><a href="">Регистрация</a></div>
-    <div class="login"><a href="">Уже есть аккаунт?</a></div>
+    <div class="signup"><a th:href="@{/user/register}">Регистрация</a></div>
+    <div class="login"><a th:href="@{/user/login}">Уже есть аккаунт?</a></div>
     <div class="login-form">
-        <input type="text" placeholder="Ваш ник" class="input" required><br>
-        <input type="password" placeholder="Пароль" class="input" required><br>
-        <div class="button-container">
-            <div class="button">
-                <a href="#" class="btn effect04" data-sm-link-text="НАЖАТЬ" target="_blank">
-                    <span>Войти</span>
-                </a>
-            </div>
-        </div>
+        <form th:action="@{/user/login}" method="post" th:object="${user}">
+            <input type="text" placeholder="Ваш ник" class="input" th:field="*{userName}" required="required"><br>
+            <input type="password" placeholder="Пароль" class="input" th:field="*{password}" required="required"><br>
+            <input class="sub" type="submit">
+            <!--         <div class="button-container">-->
+            <!--            <div class="button">-->
+            <!--                <a href="#" class="btn effect04" data-sm-link-text="НАЖАТЬ" target="_blank">-->
+            <!--                    <span>Войти</span>-->
+            <!--                </a>-->
+            <!--            </div>-->
+            <!--        </div>-->
+        </form>
     </div>
 </div>
 

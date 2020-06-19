@@ -93,6 +93,12 @@ body {
     cursor: pointer;
 }
 
+.span-message {
+    padding: 4px;
+    display: flex;
+    position: absolute;
+}
+
 .sub:hover {
     background: linear-gradient(to right, #928DAB, #00d2ff);
     color: white;
