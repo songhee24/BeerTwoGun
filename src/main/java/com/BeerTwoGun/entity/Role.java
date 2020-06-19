@@ -3,6 +3,7 @@ package com.BeerTwoGun.entity;
 import com.sun.istack.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
@@ -15,7 +16,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "role")
-public class Role {
+public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
@@ -24,5 +25,8 @@ public class Role {
     @Column(name = "role_name")
     String roleName;
 
-
+    @Override
+    public String getAuthority() {
+        return getRoleName();
+    }
 }

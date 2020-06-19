@@ -19,4 +19,9 @@ public class TreeController {
     public Tree save(@RequestBody Tree tree){
         return treeService.save(tree);
     }
+
+    @PostMapping("/create")
+    public Tree createTree(@RequestBody Tree tree){
+        return treeService.createTree(tree);
+    }
 }

@@ -6,18 +6,34 @@ import com.BeerTwoGun.repository.UserRepository;
 import com.BeerTwoGun.service.RoleService;
 import com.BeerTwoGun.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private RoleService roleService;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = findByUserName(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        return user;
+    }
 
     @Override
     public User save(User item) {
@@ -43,6 +59,8 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+
+
     @Override
     public User findByUserName(String userName) {
         return userRepository.findByUserName(userName);
@@ -50,7 +68,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-        User userFromBd = findByUserName(user.getUserName());
+        User userFromBd = findByUserName(user.getUsername());
 
         if (userFromBd != null) {
             System.out.println("username already have");
@@ -59,7 +77,7 @@ public class UserServiceImpl implements UserService {
 
         Role role = roleService.save(Role.builder().id(1L).roleName("ROLE_USER").build());
         user.setRoles(Collections.singleton(role));
-
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return save(user);
     }
 }

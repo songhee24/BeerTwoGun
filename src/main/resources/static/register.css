@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body {
+    /*background: #00d2ff;  !* fallback for old browsers *!*/
+    /*background: -webkit-linear-gradient(to right, #928DAB, #00d2ff);  !* Chrome 10-25, Safari 5.1-6 *!*/
+    background: linear-gradient(to right, #928DAB, #00d2ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: 'Roboto Thin',sans-serif;
+}
+
+.container {
+    width: 450px;
+    margin: 50px auto;
+}
+
+.signup,
+.login {
+      width: 50%;
+      height: 60px;
+      float: left;
+      text-align: center;
+    line-height: 60px;
+    cursor: pointer;
+    text-transform: uppercase;
+
+}
+
+.signup {
+    background: linear-gradient(to left, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.login {
+    background: linear-gradient(to left, #C9D6FF, #E2E2E2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+
+
+
+.signup a,.login a {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    background: linear-gradient(to bottom, #928DAB,  #00d2ff 60%, #C9D6FF);
+    -webkit-background-clip: text;
+    color: transparent;
+    background-repeat: no-repeat;
+    transition: background 0.2s ease-out;
+
+}
+
+/* .link {*/
+/*    position: relative;*/
+/*}*/
+
+/*.link:before {*/
+/*    position: absolute;*/
+/*    content: "";*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    height: 1px;*/
+/*    background: #33ee33;*/
+/*    bottom: 8px;*/
+/*    transition: all 0.2s ease-out;*/
+/*}*/
+
+.signup:hover,.login:hover {
+    background: #fff;
+    box-sizing: border-box;
+}
+
+/*.link:hover:before {*/
+/*    transform: translateY(6px)*/
+
+/*}*/
+
+
+.sub {
+    /*background: linear-gradient(rgba(9,115,121,1) 33%, rgba(0,212,255,1) 100%);*/
+    border: 2px solid #34b3a0;
+    color: #65ff00;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.sub:hover {
+    background: linear-gradient(to right, #928DAB, #00d2ff);
+    color: white;
+}
+
+
+.signup-form{
+    background: #fff;
+    box-sizing: border-box;
+    padding: 40px;
+    clear: both;
+    width: 100%;
+    height: 460px;
+    text-align: center;
+}
+.login-form {
+    background: #fff;
+    box-sizing: border-box;
+    padding:120px 40px ;
+    clear: both;
+    width: 100%;
+    height: 460px;
+    text-align: center;
+}
+
+
+.input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 2px solid #e9eaea;
+    color: #33ee33;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.5s ease;
+}
+
+.input:focus{
+    border: 2px solid #34b3a0;
+}
+
+.btn {
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 45px;
+    max-width: 160px;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 100%;
+}
+.btn:hover {
+    text-decoration: none;
+}
+
+.button-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: #FFF;
+    width: 100%;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    /*   padding: 2em 0em; */
+}
+
+.effect04 {
+    --uismLinkDisplay: var(--smLinkDisplay, inline-flex);
+    display: var(--uismLinkDisplay);
+    /*senpai said anata wa bakadesuka*/
+    color: #3ac100;
+    outline: solid  2px #43c6ac;
+    position: relative;
+    transition-duration: 0.4s;
+    overflow: hidden;
+}
+
+.effect04::before,
+.effect04 span{
+    margin: 0 auto;
+    transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+    transition-duration: 0.4s;
+}
+
+/* 文字1を上に */
+.effect04:hover{
+
+    background: linear-gradient(to right, #4ecdc4, #556270);
+}
+
+.effect04:hover span{
+    -webkit-transform: translateY(-400%) scale(-0.1,20);
+    transform: translateY(-400%) scale(-0.1,20);
+}
+
+/*文字2*/
+.effect04::before{
+    content: attr(data-sm-link-text);
+    color: #a1ffce;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    -webkit-transform: translateY(500%) scale(-0.1,20);
+    transform: translateY(500%) scale(-0.1,20);
+}
+
+/* HOVERしたら文字2を上に */
+.effect04:hover::before{
+    letter-spacing: 0.05em;
+    -webkit-transform: translateY(0) scale(1,1);
+    transform: translateY(0) scale(1,1);
+}

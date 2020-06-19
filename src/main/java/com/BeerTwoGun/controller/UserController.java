@@ -3,24 +3,32 @@ package com.BeerTwoGun.controller;
 import com.BeerTwoGun.entity.User;
 import com.BeerTwoGun.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
-//    @PostMapping
-//    public User save(@RequestBody User user){
-//        return userService.save(user);
-//    }
+    @GetMapping("/register")
+    public String register(Model model){
+        model.addAttribute("user",new User());
+        return "/login-page/register";
+    }
+
+    @PostMapping("/create")
+    public String crateUser(@ModelAttribute User user) {
+        userService.createUser(user);
+        return "login-page/login";
+    }
 
     @PostMapping
-    public User crateUser(@RequestBody User user) {
-        return userService.createUser(user);
+    public User save(@RequestBody User user){
+        return userService.save(user);
     }
+
+
 }

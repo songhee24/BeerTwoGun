@@ -1,5 +1,6 @@
 package com.BeerTwoGun.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.NotFound;
@@ -21,7 +22,7 @@ import java.util.List;
 public class Tree {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false, unique = true)
+    @Column(name = "id")
     private Long Id;
 
 
@@ -31,6 +32,6 @@ public class Tree {
 
     @OneToOne
     @JoinColumn(name = "child_id")
-    Person child_id;
+    Person childId;
 
 }

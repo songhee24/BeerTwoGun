@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonServiceImpl implements PersonService {
@@ -27,6 +28,28 @@ public class PersonServiceImpl implements PersonService {
     public List<Person> findAll() {
         return personRepository.findAll();
     }
+
+    @Override
+    public Person findByIdAndIfObjectIsNull(Long id) {
+        try {
+            Person knotParentId = findById(id);
+            Optional<Person> parentOptional = Optional.ofNullable(knotParentId);
+            Person ifPersonNull;
+
+                long count = 0;
+                if (!parentOptional.isPresent()){
+                    ifPersonNull = Person.builder().id(++count).build();
+                    return ifPersonNull;
+                }
+
+
+        } catch (NullPointerException nullPointer){
+            nullPointer.getStackTrace();
+        }
+        return null;
+    }
+
+
 
     @Override
     public Person findById(Long id) {
