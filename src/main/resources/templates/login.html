@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+
+<!--href="../../static/register.css"-->
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css"  th:href="@{/css/register.css}" >
+</head>
+
+<body>
+<div class="container">
+    <div class="signup"><a th:href="@{/user/register}">Регистрация</a></div>
+    <div class="login"><a th:href="@{/user/login}">Уже есть аккаунт?</a></div>
+    <div class="login-form">
+
+        <form th:action="@{/login}" method="post" >
+            <input type="text"  name="username" placeholder="Ваш ник" class="input"  required="required"><br>
+            <span class="span-message" th:if="${param.error}">  Invalid username </span>
+            <input type="password" name="password"  placeholder="Пароль" class="input"  required="required"><br>
+            <span class="span-message" th:if="${param.error}" > Invalid password  </span>
+            <button class="sub" type="submit">Отправить</button>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

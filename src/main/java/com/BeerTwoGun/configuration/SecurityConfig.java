@@ -72,8 +72,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .and()
                 .formLogin()
-                .loginPage("/user/login")
-                .loginProcessingUrl("/user/login")
+                .loginPage("/login")
+                .permitAll()
+//                .loginProcessingUrl("/login")
                 .usernameParameter("username")//
                 .passwordParameter("password")
                 .defaultSuccessUrl("/home", true)
@@ -82,7 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll()
-                .logoutSuccessUrl("/user/login");
+                .logoutSuccessUrl("/login");
 /*                .and()
                 .sessionManagement()
                 .maximumSessions(1)

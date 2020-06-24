@@ -9,16 +9,21 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user/")
 public class UserController {
     @Autowired
     private UserService userService;
+
+
+//    @GetMapping("login")
+//    public String getLoginPage(Model model){
+//        model.addAttribute("user",new User());
+//        return "/login";
+//    }
 
 
     @GetMapping("register")
@@ -49,14 +54,10 @@ public class UserController {
         }
 
         userService.createUser(user);
-        return "login-page/login";
+        return "/login";
     }
 
-    @GetMapping("login")
-    public String getLoginPage(Model model){
-        model.addAttribute("user",new User());
-        return "login-page/login";
-    }
+
 
 //    @PostMapping("login")
 //    public String loginUser(@ModelAttribute User user, HttpSession session, String error, String logout, Model model){
