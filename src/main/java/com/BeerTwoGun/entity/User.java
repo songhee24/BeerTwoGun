@@ -9,6 +9,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 
 @Getter
@@ -26,24 +28,29 @@ public class User implements UserDetails {
     Long id;
 
     @NotNull
+    @Size(min = 8, max = 30)
     @Column(name = "user_name")
     String userName;
 
     @NotNull
     @Column(name = "email")
+    @Email(message = "Email should be valid")
     String email;
 
     @NotNull
+//    @Size(min = 8, max = 30)
     @Column(name = "password")
     String password;
+
     @NotNull
+//    @Size(min = 8, max = 30)
     @Column(name = "confirm_password")
     String confirmPassword;
 
 
     // TODO вспомнить зачем я это сюда добавлял
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
     @JsonIgnore
     @JoinTable(
             name = "users_roles",

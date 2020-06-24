@@ -2,14 +2,15 @@
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org">
 
-<link th:href="@{/register.css}" rel="stylesheet">
 <!--href="../../static/register.css"-->
 
 
 <head>
     <meta charset="UTF-8">
-    <title>Main page</title>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css"  th:href="@{/css/register.css}" >
 </head>
+
 <body>
 <div class="container">
     <div class="signup"><a th:href="@{/user/register}">Регистрация</a></div>
@@ -17,8 +18,10 @@
     <div class="login-form">
         <form th:action="@{/user/login}" method="post" th:object="${user}">
             <input type="text" placeholder="Ваш ник" class="input" th:field="*{userName}" required="required"><br>
+            <span class="span-message" th:text="${param.error}"> </span>
             <input type="password" placeholder="Пароль" class="input" th:field="*{password}" required="required"><br>
-            <input class="sub" type="submit">
+            <span class="span-message" th:text="${param.error}" > </span>
+            <button class="sub" type="submit">Отправить</button>
             <!--         <div class="button-container">-->
             <!--            <div class="button">-->
             <!--                <a href="#" class="btn effect04" data-sm-link-text="НАЖАТЬ" target="_blank">-->

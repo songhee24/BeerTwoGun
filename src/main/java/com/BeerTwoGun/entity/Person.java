@@ -43,7 +43,7 @@ public class Person {
     @Column(name = "inn")
     String inn;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinColumn(name = "tree_id")
     Tree tree;

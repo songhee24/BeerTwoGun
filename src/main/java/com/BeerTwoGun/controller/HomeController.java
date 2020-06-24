@@ -9,8 +9,8 @@ import java.security.Principal;
 @Controller
 public class HomeController {
 
-    @RequestMapping("/create/user")
+    @RequestMapping("/home")
     public String defectDetails() {
-        return "login-page/register";
+        return "home-page/home";
     }
 }

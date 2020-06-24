@@ -2,12 +2,14 @@
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org">
 
-<link  th:href="@{/register.css}"  rel="stylesheet">
+
 <!--th:href="@{/register.css}"-->
 
 <head>
     <meta charset="UTF-8">
-    <title>Main page</title>
+    <title>Register</title>
+
+    <link rel="stylesheet" type="text/css"  th:href="@{/css/register.css}" >
 </head>
 <body>
    <div class="container">
@@ -15,12 +17,16 @@
        <div class="login"><a th:href="@{/user/login}">Уже есть аккаунт?</a></div>
            <div class="signup-form">
                <form th:action="@{/user/create}" method="post" th:object="${user}">
-               <input type="text" placeholder="Имя пользователя" class="input" th:field="*{userName}" required="required" ><br>
+               <input type="text" placeholder="Имя пользователя" class="input"  th:field="*{userName}"  required="required" ><br>
+
+                   <span class="span-message" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
+
+                   <!--th:field="*{userName}"-->
                <input  type="text" placeholder="Ваша почта" class="input" th:field="*{email}" required="required"><br>
                <input type="password" id="password" placeholder="Укажите пароль" class="input" th:field="*{password}" required="required"><br>
                <span class="span-message" id='message'> </span>
                <input type="password" id="confirm_password" placeholder="Повторите свой пароль" class="input" th:field="*{confirmPassword}" onkeyup='check();' required="required"><br>
-                   <input class="sub" type="submit">
+                   <button class="sub" type="submit">Отправить</button>
                    <!--               <div class="button-container">-->
 <!--                   <div class="button">-->
 <!--                       <a href="#" class="btn effect04" data-sm-link-text="НАЖАТЬ" >-->
@@ -33,7 +39,7 @@
    </div>
    <script>
        var check = function() {
-           if (document.getElementById('password').value ==
+           if (document.getElementById('password').value ===
                document.getElementById('confirm_password').value) {
                document.getElementById('message').style.color = 'green';
                document.getElementById('message').innerHTML = 'Совпадают';
