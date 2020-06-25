@@ -14,14 +14,14 @@
 <body>
 <div class="container">
     <div class="signup"><a th:href="@{/user/register}">Регистрация</a></div>
-    <div class="login"><a th:href="@{/user/login}">Уже есть аккаунт?</a></div>
+    <div class="login"><a th:href="@{/login}">Уже есть аккаунт?</a></div>
     <div class="login-form">
 
+        <span class="login-message" th:if="${param.error}">  неправильное имя или пароль </span>
         <form th:action="@{/login}" method="post" >
-            <input type="text"  name="username" placeholder="Ваш ник" class="input"  required="required"><br>
-            <span class="span-message" th:if="${param.error}">  Invalid username </span>
-            <input type="password" name="password"  placeholder="Пароль" class="input"  required="required"><br>
-            <span class="span-message" th:if="${param.error}" > Invalid password  </span>
+            <input type="text"  name="username" placeholder="Ваш ник" class="input"  required="required">
+
+            <input type="password" name="password"placeholder="Пароль" class="input"  required="required">
             <button class="sub" type="submit">Отправить</button>
         </form>
 

@@ -17,23 +17,22 @@
        <div class="login"><a th:href="@{/login}">Уже есть аккаунт?</a></div>
            <div class="signup-form">
                <form th:action="@{/user/create}" method="post" th:object="${user}">
-               <input type="text" placeholder="Имя пользователя" class="input"  th:field="*{userName}"  required="required" ><br>
+                   <span class="register-message" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
+                   <input type="text" placeholder="Имя пользователя" class="input"  th:field="*{userName}"  required="required" >
+                   <br>
+                   <span class="register-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                   <input  type="text" placeholder="Ваша почта" class="input" th:field="*{email}" required="required">
+                   <br>
+                   <span class="register-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                   <input type="password" id="password" placeholder="Укажите пароль" class="input" th:field="*{password}" required="required">
+                   <br>
+                   <span id="message" class="span-message"></span>
 
-                   <span class="span-message" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
-
-                   <!--th:field="*{userName}"-->
-               <input  type="text" placeholder="Ваша почта" class="input" th:field="*{email}" required="required"><br>
-               <input type="password" id="password" placeholder="Укажите пароль" class="input" th:field="*{password}" required="required"><br>
-               <span class="span-message" id='message'> </span>
-               <input type="password" id="confirm_password" placeholder="Повторите свой пароль" class="input" th:field="*{confirmPassword}" onkeyup='check();' required="required"><br>
+                   <span class="register-message" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></span>
+                   <input type="password" id="confirm_password" placeholder="Повторите свой пароль" class="input" th:field="*{confirmPassword}" onkeyup='check();' required="required">
+                   <br>
                    <button class="sub" type="submit">Отправить</button>
-                   <!--               <div class="button-container">-->
-<!--                   <div class="button">-->
-<!--                       <a href="#" class="btn effect04" data-sm-link-text="НАЖАТЬ" >-->
-<!--                           <span>Создать аккаунт</span>-->
-<!--                       </a>-->
-<!--                   </div>-->
-<!--               </div>-->
+
                </form>
            </div>
    </div>

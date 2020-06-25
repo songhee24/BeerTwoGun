@@ -95,8 +95,22 @@ body {
 
 .span-message {
     padding: 4px;
-    display: flex;
     position: absolute;
+    margin-left: 137px;
+    bottom: 221px;
+}
+
+.login-message {
+    padding: 4px;
+    color: red;
+}
+
+.register-message{
+    font-size: 12px;
+    position: absolute;
+    color: red;
+    /* padding: 3px; */
+    margin-left: 50px;
 }
 
 .sub:hover {
@@ -141,86 +155,3 @@ body {
     border: 2px solid #34b3a0;
 }
 
-.btn {
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 45px;
-    max-width: 160px;
-    position: relative;
-    text-decoration: none;
-    text-transform: uppercase;
-    width: 100%;
-}
-.btn:hover {
-    text-decoration: none;
-}
-
-.button-container {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    background-color: #FFF;
-    width: 100%;
-}
-
-.button {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    /*   padding: 2em 0em; */
-}
-
-.effect04 {
-    --uismLinkDisplay: var(--smLinkDisplay, inline-flex);
-    display: var(--uismLinkDisplay);
-    /*senpai said anata wa bakadesuka*/
-    color: #3ac100;
-    outline: solid  2px #43c6ac;
-    position: relative;
-    transition-duration: 0.4s;
-    overflow: hidden;
-}
-
-.effect04::before,
-.effect04 span{
-    margin: 0 auto;
-    transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
-    transition-duration: 0.4s;
-}
-
-/* 文字1を上に */
-.effect04:hover{
-
-    background: linear-gradient(to right, #4ecdc4, #556270);
-}
-
-.effect04:hover span{
-    -webkit-transform: translateY(-400%) scale(-0.1,20);
-    transform: translateY(-400%) scale(-0.1,20);
-}
-
-/*文字2*/
-.effect04::before{
-    content: attr(data-sm-link-text);
-    color: #a1ffce;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-    -webkit-transform: translateY(500%) scale(-0.1,20);
-    transform: translateY(500%) scale(-0.1,20);
-}
-
-/* HOVERしたら文字2を上に */
-.effect04:hover::before{
-    letter-spacing: 0.05em;
-    -webkit-transform: translateY(0) scale(1,1);
-    transform: translateY(0) scale(1,1);
-}
