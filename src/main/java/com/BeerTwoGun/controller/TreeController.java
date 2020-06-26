@@ -1,15 +1,15 @@
 package com.BeerTwoGun.controller;
 
 
+import com.BeerTwoGun.entity.Person;
 import com.BeerTwoGun.entity.Tree;
 import com.BeerTwoGun.service.TreeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("/tree")
 public class TreeController {
     @Autowired
@@ -20,8 +20,10 @@ public class TreeController {
         return treeService.save(tree);
     }
 
-    @PostMapping("/create")
-    public Tree createTree(@RequestBody Tree tree){
-        return treeService.createTree(tree);
+    @GetMapping
+    public String getTreePage(Model model){
+        model.addAttribute("person",new Person());
+        return "/tree";
     }
+
 }

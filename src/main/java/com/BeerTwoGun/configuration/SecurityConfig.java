@@ -85,13 +85,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll()
-                .logoutSuccessUrl("/login");
-/*                .and()
+                .logoutSuccessUrl("/login")
+                .and()
                 .sessionManagement()
                 .maximumSessions(1)
                 .maxSessionsPreventsLogin(true)
                 .sessionRegistry(sessionRegistry());
- */   }
+    }
 
 
 

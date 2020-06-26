@@ -13,8 +13,10 @@
 </head>
 <body>
    <div class="container">
+       <div class="nav-btn">
        <div class="signup"><a th:href="@{/user/register}">Регистрация</a></div>
        <div class="login"><a th:href="@{/login}">Уже есть аккаунт?</a></div>
+       </div>
            <div class="signup-form">
                <form th:action="@{/user/create}" method="post" th:object="${user}">
                    <span class="register-message" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>

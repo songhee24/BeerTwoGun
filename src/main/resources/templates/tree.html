@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+        <form th:action="@{/person/create}" method="post" th:object="${person}">
+            <span>member:</span>
+            <input type="text" th:field="*{member}"  required="required" >
+            <br>
+            <span>firstName:</span>
+            <input type="text" th:field="*{firstName}" required="required">
+            <br>
+            <span>lastName:</span>
+            <input  type="text" th:field="*{lastName}" required="required">
+            <br>
+            <span>birthDate:</span>
+            <input type="date" placeholder="yyyy-MM-dd" value=""
+                   min="1937-01-01" max="2030-12-31" th:field="*{birthDate}"  required="required">
+            <br>
+            <span>gender:</span>
+            <input type="text" th:field="*{gender}"  required="required">
+            <br>
+            <span>inn:</span>
+            <input type="text" th:field="*{inn}" required="required">
+            <br>
+            <button type="submit">Отправить</button>
+
+        </form>
+</body>
+</html>

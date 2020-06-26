@@ -9,12 +9,16 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" type="text/css"  th:href="@{/css/register.css}" >
+<!--    <link rel="stylesheet" href="../static/css/register.css">-->
 </head>
 
 <body>
 <div class="container">
-    <div class="signup"><a th:href="@{/user/register}">Регистрация</a></div>
-    <div class="login"><a th:href="@{/login}">Уже есть аккаунт?</a></div>
+    <div class="nav-btn">
+        <div class="signup"><a th:href="@{/user/register}">Регистрация</a></div>
+        <div class="login"><a th:href="@{/login}">Уже есть аккаунт?</a></div>
+    </div>
+
     <div class="login-form">
 
         <span class="login-message" th:if="${param.error}">  неправильное имя или пароль </span>

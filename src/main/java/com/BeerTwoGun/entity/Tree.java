@@ -23,15 +23,15 @@ public class Tree {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long Id;
+     Long Id;
 
 
-    @OneToOne
+    @OneToMany
     @JoinColumn(name = "parent_id")
-    Person parentId;
+    List<Person> parentId;
 
-    @OneToOne
+    @OneToMany
     @JoinColumn(name = "child_id")
-    Person childId;
+    List<Person> childId;
 
 }

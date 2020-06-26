@@ -11,9 +11,63 @@ body {
     font-family: 'Roboto Thin',sans-serif;
 }
 
-.container {
-    width: 450px;
+
+@media only screen and (max-width: 992px){
+    .container {
+        max-width: 350px;
+        margin: 50px auto;
+    }
+    .nav-btn{
+        padding-top: 10px;
+        align-items: center;
+        max-width: 100%;
+        height: 130px;
+        background: linear-gradient(to left, #E2E2E2, #C9D6FF);
+    }
+    .signup,
+    .login {
+        height: 60px;
+        text-align: center;
+        line-height: 60px;
+        cursor: pointer;
+        text-transform: uppercase;
+
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .container {
+        max-width: 300px;
+        margin: 50px auto;
+    }
+    .nav-btn{
+        padding-top: 10px;
+        align-items: center;
+        max-width: 100%;
+        height: 130px;
+        background: linear-gradient(to left, #E2E2E2, #C9D6FF);
+    }
+    .signup,
+    .login {
+        height: 60px;
+        text-align: center;
+        line-height: 60px;
+        cursor: pointer;
+        text-transform: uppercase;
+
+    }
+}
+
+.container{
+    max-width: 450px;
     margin: 50px auto;
+}
+
+.nav-btn{
+    align-items: center;
+    max-width: 100%;
+    height:60px;
+    background: linear-gradient(to left, #E2E2E2, #C9D6FF);
 }
 
 .signup,

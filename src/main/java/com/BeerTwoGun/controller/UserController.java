@@ -19,18 +19,14 @@ public class UserController {
     private UserService userService;
 
 
-//    @GetMapping("login")
-//    public String getLoginPage(Model model){
-//        model.addAttribute("user",new User());
-//        return "/login";
-//    }
-
-
     @GetMapping("register")
     public String getRegisterPage(Model model){
         model.addAttribute("user",new User());
-        return "login-page/register";
+        return "/login-page/register";
     }
+
+
+
 
 //    @PostMapping("check")
 //    public String checkPersonInfo(@Valid User user,BindingResult bindingResult){
