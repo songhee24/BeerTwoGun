@@ -9,10 +9,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "create_person")
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -44,9 +44,5 @@ public class Person {
 
     @Column(name = "inn")
     String inn;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JsonIgnore
-    @JoinColumn(name = "tree_id")
-    Tree tree;
+    
 }

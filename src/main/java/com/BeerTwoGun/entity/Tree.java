@@ -12,7 +12,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "tree")
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -26,11 +25,13 @@ public class Tree {
      Long Id;
 
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL
+            ,fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     List<Person> parentId;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL
+            ,fetch = FetchType.LAZY)
     @JoinColumn(name = "child_id")
     List<Person> childId;
 
