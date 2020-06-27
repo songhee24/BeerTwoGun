@@ -62,7 +62,7 @@ public class User implements UserDetails {
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "tree_id")
-    Tree treeId;
+    Node nodeId;
 
     public String getUserName() {
         return userName;

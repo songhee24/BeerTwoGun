@@ -1,13 +1,9 @@
 package com.BeerTwoGun.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
-import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -22,17 +18,13 @@ public class Tree {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-     Long Id;
+    Long Id;
 
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "node_id")
+    List<Node> nodeList;
 
-    @OneToMany(cascade = CascadeType.ALL
-            ,fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "parent_id")
-    List<Person> parentId;
-
-    @OneToMany(cascade = CascadeType.ALL
-            ,fetch = FetchType.LAZY)
-    @JoinColumn(name = "child_id")
-    List<Person> childId;
-
+    Tree treeParentId;
 }

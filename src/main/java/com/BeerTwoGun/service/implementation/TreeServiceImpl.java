@@ -1,17 +1,15 @@
 package com.BeerTwoGun.service.implementation;
 
-import com.BeerTwoGun.entity.Person;
+import com.BeerTwoGun.entity.Node;
 import com.BeerTwoGun.entity.Tree;
 import com.BeerTwoGun.repository.TreeRepository;
-import com.BeerTwoGun.service.PersonService;
+import com.BeerTwoGun.service.NodeService;
 import com.BeerTwoGun.service.TreeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TreeServiceImpl implements TreeService {
@@ -19,26 +17,7 @@ public class TreeServiceImpl implements TreeService {
     private TreeRepository treeRepository;
 
     @Autowired
-    private PersonService personService;
-
-    @Override
-    public Tree createTree(Tree tree,List<Long> parent_Id, List<Long> child_Id) {
-//            List<Person> people = personService.findAll();
-            List<Person> parents = new ArrayList<>();
-            List<Person> children = new ArrayList<>();
-            for (int i = 0; i< parent_Id.size();i++){
-                parents.add(personService.findById(parent_Id.get(i)));
-            }
-            for (int i = 0; i< child_Id.size();i++){
-                children.add(personService.findById(child_Id.get(i)));
-            }
-
-
-
-            tree.setParentId(parents);
-            tree.setChildId(children);
-            return save(tree);
-    }
+    private NodeService nodeService;
 
     @Override
     public Tree save(Tree item) {
@@ -57,10 +36,20 @@ public class TreeServiceImpl implements TreeService {
 
     @Override
     public boolean delete(Long id) {
-        if(treeRepository.findById(id).isPresent()){
+        if (treeRepository.findById(id).isPresent()){
             treeRepository.deleteById(id);
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Tree createTree(Tree tree, List<Long> nodeId) {
+        List<Node> nodes = new ArrayList<>();
+        for (int i =0;i<nodeId.size();i++){
+             nodes.add(nodeService.findById(nodeId.get(i)));
+        }
+        tree.setNodeList(nodes);
+        return save(tree);
     }
 }

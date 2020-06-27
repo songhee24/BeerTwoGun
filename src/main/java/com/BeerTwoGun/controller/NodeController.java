@@ -2,8 +2,8 @@ package com.BeerTwoGun.controller;
 
 
 import com.BeerTwoGun.entity.Person;
-import com.BeerTwoGun.entity.Tree;
-import com.BeerTwoGun.service.TreeService;
+import com.BeerTwoGun.entity.Node;
+import com.BeerTwoGun.service.NodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/tree")
-public class TreeController {
+public class NodeController {
     @Autowired
-    private TreeService treeService;
+    private NodeService nodeService;
 
     @PostMapping
-    public Tree save(@RequestBody Tree tree){
-        return treeService.save(tree);
+    public Node save(@RequestBody Node node){
+        return nodeService.save(node);
     }
 
     @GetMapping
