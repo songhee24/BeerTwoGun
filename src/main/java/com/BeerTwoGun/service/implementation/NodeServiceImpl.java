@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class NodeServiceImpl implements NodeService {
@@ -20,23 +22,38 @@ public class NodeServiceImpl implements NodeService {
     private PersonService personService;
 
     @Override
-    public Node createTree(Node node, List<Long> parent_Id, List<Long> child_Id) {
-//            List<Person> people = personService.findAll();
+    public Node createTree(Node node, List<Optional<Long>> parent_Id, List<Optional<Long>> child_Id) {
             List<Person> parents = new ArrayList<>();
             List<Person> children = new ArrayList<>();
-            for (int i = 0; i< parent_Id.size();i++){
-                parents.add(personService.findById(parent_Id.get(i)));
+//        List<Long> pId = parentId.stream().filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
+        if (!(parent_Id == null)){
+            for (int p = 0; p < parent_Id.size();p++){
+                if (parent_Id.get(p).isPresent()){
+                    List<Long> pId = parent_Id.stream().filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
+                    parents.add(personService.findById(pId.get(p)));
+                } else{
+                    node.setParentId(parents);
+                    return save(node);
+                }
             }
-            for (int i = 0; i< child_Id.size();i++){
-                children.add(personService.findById(child_Id.get(i)));
+        }
+        if (!(child_Id == null)){
+            for (int c = 0; c < child_Id.size();c++){
+                if (child_Id.get(c).isPresent()){
+                    List<Long> cId = child_Id.stream().filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
+                    children.add(personService.findById(cId.get(c)));
+                } else {
+                    node.setParentId(parents);
+                    return save(node);
+                }
             }
-
-
-
+        }
             node.setParentId(parents);
             node.setChildId(children);
             return save(node);
     }
+
+
 
     @Override
     public Node save(Node item) {
