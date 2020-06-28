@@ -16,7 +16,7 @@
 </head>
 <body>
 
-        <form th:action="@{/person/create}" method="post" th:object="${person}">
+        <form th:action="@{/individual/create}" method="post" th:object="${individual}">
             <span>member:</span>
             <input type="text" th:field="*{member}"  required="required" >
             <br>
@@ -42,35 +42,35 @@
             <ul th:each="tree: ${allTree}">
                 <li>
                     <div class="family" th:each="node: ${tree.nodeList}" >
-                        <div class="person child male">
+                        <div class="individual child male">
                             <div class="name">htGrandfather</div>
                         </div>
                 <div class="parent">
-                    <div class="person female">
+                    <div class="individual female">
                         <div class="name"></div>
                     </div>
                     <ul >
                         <li  >
                             <div class="family" style="width: 344px" >
-                                <div class="person child female"  >
+                                <div class="individual child female"  >
                                         <div class="name" th:each="parent_id: ${node.parentId}" th:if="${#strings.toString(parent_id.gender)} == 'MALE'" >
                                             <p th:text="${parent_id.member}"></p>
                                         </div>
                                 </div>
                                 <div class="parent" >
-                                    <div class="person male" >
+                                    <div class="individual male" >
                                         <div class="name" th:each="parent_id: ${node.parentId}"  th:if="${#strings.toString(parent_id.gender)} == 'FEMALE'">
                                             <p th:text="${parent_id.member}"></p>
                                         </div>
                                     </div>
                                     <ul>
                                         <li th:each="child_id: ${node.childId}"  th:if="${#strings.toString(child_id.gender)} == 'MALE'">
-                                            <div class="person child male">
+                                            <div class="individual child male">
                                                 <div class="name"><p th:text="${child_id.member}"></p></div>
                                             </div>
                                         </li>
 <!--                                        <li>-->
-<!--                                            <div class="person child female">-->
+<!--                                            <div class="individual child female">-->
 <!--                                                <div class="name">Sister</div>-->
 <!--                                            </div>-->
 <!--                                        </li>-->

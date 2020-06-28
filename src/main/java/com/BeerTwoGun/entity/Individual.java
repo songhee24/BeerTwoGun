@@ -12,37 +12,52 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "create_person")
+@Table(name = "individual")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Person {
+public class Individual {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
+
     @Column(name = "member")
     String member;
 
-    @Column(name = "first_name")
-    String firstName;
+    @Column(name = "name_first")
+    String nameFirst;
 
-    @Column(name = "last_name")
-    String lastName;
+    @Column(name = "name_last")
+    String nameLast;
 
 //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    @Column(name = "birth_date")
-    LocalDate birthDate;
+    @Column(name = "date_birth")
+    LocalDate dateBirth;
+
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @Column(name = "date_birth")
+    LocalDate dateDeath;
 
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
     Gender gender;
 
-    @Column(name = "inn")
-    String inn;
+    @Column(name = "place_birth")
+    String placeBirth;
+
+    @Column(name = "place_death")
+    String placeDeath;
+
+    @Column(name = "cause_death")
+    String causeDeath;
+
+    @Column(name = "individual_notes")
+    String text;
+
 
 }

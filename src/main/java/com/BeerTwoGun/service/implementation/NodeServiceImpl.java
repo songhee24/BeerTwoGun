@@ -1,9 +1,8 @@
+/*
 package com.BeerTwoGun.service.implementation;
 
-import com.BeerTwoGun.entity.Node;
-import com.BeerTwoGun.entity.Person;
-import com.BeerTwoGun.repository.NodeRepository;
-import com.BeerTwoGun.service.PersonService;
+import com.BeerTwoGun.entity.Individual;
+import com.BeerTwoGun.service.IndividualService;
 import com.BeerTwoGun.service.NodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,18 +18,18 @@ public class NodeServiceImpl implements NodeService {
     private NodeRepository nodeRepository;
 
     @Autowired
-    private PersonService personService;
+    private IndividualService individualService;
 
     @Override
     public Node createTree(Node node, List<Optional<Long>> parent_Id, List<Optional<Long>> child_Id) {
-            List<Person> parents = new ArrayList<>();
-            List<Person> children = new ArrayList<>();
+            List<Individual> parents = new ArrayList<>();
+            List<Individual> children = new ArrayList<>();
 //        List<Long> pId = parentId.stream().filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
         if (!(parent_Id == null)){
             for (int p = 0; p < parent_Id.size();p++){
                 if (parent_Id.get(p).isPresent()){
                     List<Long> pId = parent_Id.stream().filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
-                    parents.add(personService.findById(pId.get(p)));
+                    parents.add(individualService.findById(pId.get(p)));
                 } else{
                     node.setParentId(parents);
                     return save(node);
@@ -41,7 +40,7 @@ public class NodeServiceImpl implements NodeService {
             for (int c = 0; c < child_Id.size();c++){
                 if (child_Id.get(c).isPresent()){
                     List<Long> cId = child_Id.stream().filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
-                    children.add(personService.findById(cId.get(c)));
+                    children.add(individualService.findById(cId.get(c)));
                 } else {
                     node.setChildId(children);
                     return save(node);
@@ -79,3 +78,4 @@ public class NodeServiceImpl implements NodeService {
         return false;
     }
 }
+*/

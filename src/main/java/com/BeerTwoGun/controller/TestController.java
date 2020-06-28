@@ -1,16 +1,11 @@
 package com.BeerTwoGun.controller;
 
-import com.BeerTwoGun.entity.Node;
-import com.BeerTwoGun.entity.Tree;
 import com.BeerTwoGun.service.NodeService;
-import com.BeerTwoGun.service.TreeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 
@@ -18,8 +13,7 @@ public class TestController {
     @Autowired
     private NodeService nodeService;
 
-    @Autowired
-    private TreeService treeService;
+
 
     @PostMapping
     public Node save(Node node){
@@ -38,18 +32,18 @@ public class TestController {
         return nodeService.createTree(node,parentId,childId);
     }
 
-    @CrossOrigin
-    @RequestMapping(value = "/getTree",method = RequestMethod.GET)
-    public List<Tree> getAll(){
-        return treeService.findAll();
-    }
-
-
-    @RequestMapping(value = "/tree/{nodeId}",method = RequestMethod.POST)
-    public Tree create(@RequestBody Tree tree,
-                       @PathVariable(value = "nodeId",required = false)List<Long> nodeId){
-        return treeService.createTree(tree, nodeId);
-    }
+//    @CrossOrigin
+//    @RequestMapping(value = "/getTree",method = RequestMethod.GET)
+//    public List<Tree> getAll(){
+//        return treeService.findAll();
+//    }
+//
+//
+//    @RequestMapping(value = "/tree/{nodeId}",method = RequestMethod.POST)
+//    public Tree create(@RequestBody Tree tree,
+//                       @PathVariable(value = "nodeId",required = false)List<Long> nodeId){
+//        return treeService.createTree(tree, nodeId);
+//    }
 
 
 }
