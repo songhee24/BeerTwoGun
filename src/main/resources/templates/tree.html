@@ -2,72 +2,111 @@
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org">
 <head>
+<!--    <script-->
+<!--            src="https://code.jquery.com/jquery-3.5.1.slim.js"-->
+<!--            integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="-->
+<!--            crossorigin="anonymous">-->
+<!--    </script>-->
+<!--  Library  -->
+    <link rel="stylesheet" href="https://unpkg.com/treeflex/dist/css/treeflex.css">
+<!--    <link rel="stylesheet" href="../static/css/tree.css">-->
+    <link rel="stylesheet" type="text/css"  th:href="@{/css/tree.css}" >
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 
-        <form th:action="@{/person/create}" method="post" th:object="${person}">
-            <span>member:</span>
-            <input type="text" th:field="*{member}"  required="required" >
-            <br>
-            <span>firstName:</span>
-            <input type="text" th:field="*{firstName}" required="required">
-            <br>
-            <span>lastName:</span>
-            <input  type="text" th:field="*{lastName}" required="required">
-            <br>
-            <span>birthDate:</span>
-            <input type="date" placeholder="yyyy-MM-dd"  th:field="*{birthDate}"  required="required">
-            <br>
-            <span>gender:</span>
-            <input type="text" th:field="*{gender}"  required="required">
-            <br>
-            <span>inn:</span>
-            <input type="text" th:field="*{inn}" required="required">
-            <br>
-            <button type="submit">Отправить</button>
-        </form>
+<!--        <form th:action="@{/person/create}" method="post" th:object="${person}">-->
+<!--            <span>member:</span>-->
+<!--            <input type="text" th:field="*{member}"  required="required" >-->
+<!--            <br>-->
+<!--            <span>firstName:</span>-->
+<!--            <input type="text" th:field="*{firstName}" required="required">-->
+<!--            <br>-->
+<!--            <span>lastName:</span>-->
+<!--            <input  type="text" th:field="*{lastName}" required="required">-->
+<!--            <br>-->
+<!--            <span>birthDate:</span>-->
+<!--            <input type="date" placeholder="yyyy-MM-dd"  th:field="*{birthDate}"  required="required">-->
+<!--            <br>-->
+<!--            <span>gender:</span>-->
+<!--            <input type="text" th:field="*{gender}"  required="required">-->
+<!--            <br>-->
+<!--            <span>inn:</span>-->
+<!--            <input type="text" th:field="*{inn}" required="required">-->
+<!--            <br>-->
+<!--            <button type="submit">Отправить</button>-->
+<!--        </form>-->
 
-        <div class="node">
-            <ul>
+<div class="body genealogy-body genealogy-scroll">
+    <div class="genealogy-tree">
+        <ul>
+            <li>
+            <a href="javascript:void(0);">
+                <div class="member-view-box">
+                    <div class="member-image" th:each="tree: ${allTree}">
+                        <div class="member-details"th:each="node: ${tree.nodeList}">
+                            <div th:each="parent_id: ${node.parentId}">
+                                <span th:if="${#strings.toString(parent_id.gender)} == 'MALE'">
+                                    <h3 th:text="${parent_id.member}"></h3>
+                                </span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
                 <li>
-                    <a href="#">Parent</a>
-                    <ul>
-                        <li>
-                            <a href="#">Child</a>
-                            <ul>
-                                <li>
-                                    <a href="#">Grand Child</a>
-                                </li><li>
-                                <a href="#">Grand Child</a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Grand Child</a>
-                                    </li><li>
-                                    <a href="#">Grand Child</a>
-                                </li>
-                                </ul>
-                            </li>
-                            </ul>
-                        </li><li>
-                        <a href="#">Child</a>
-                        <ul>
-                            <li>
-                                <a href="#">Grand Child</a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Grand Grand Child</a>
-                                    </li>
-                                </ul>
-                            </li><li>
-                            <a href="#">Grand Child</a>
-                        </li>
-                        </ul>
-                    </li>
-                    </ul>
+            <a href="javascript:void(0);">
+                <div class="member-view-box">
+                    <div class="member-image" th:each="tree: ${allTree}">
+                        <div class="member-details"th:each="node: ${tree.nodeList}">
+                            <div th:each="parent_id: ${node.parentId}">
+                    <span th:if="${#strings.toString(parent_id.gender)} == 'FEMALE'">
+                        <h3 th:text="${parent_id.member}"></h3>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
                 </li>
-            </ul>
-        </div>
+
+<!--                <ul class="active">-->
+<!--                    <li>-->
+<!--                        <a href="javascript:void(0);">-->
+<!--                            <div class="member-view-box">-->
+<!--                                <div class="member-image">-->
+<!--                                    <img src="https://image.flaticon.com/icons/svg/145/145867.svg" alt="Member">-->
+<!--                                    <div class="member-details">-->
+<!--                                        <h3>Member 1</h3>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="javascript:void(0);">
+                    <div class="member-view-box">
+                        <div class="member-image" th:each="tree: ${allTree}">
+                            <div class="member-details"th:each="node: ${tree.nodeList}">
+                                <div th:each="parent_id: ${node.parentId}">
+                            <span th:if="${#strings.toString(parent_id.gender)} == 'MALE'">
+                                <h3 th:text="${parent_id.member}"></h3>
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
 </body>
 </html>

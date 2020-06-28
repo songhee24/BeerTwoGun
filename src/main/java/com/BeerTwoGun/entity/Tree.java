@@ -10,6 +10,7 @@ import java.util.List;
 @Table(name = "tree")
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Getter
 @Setter
 @Builder
