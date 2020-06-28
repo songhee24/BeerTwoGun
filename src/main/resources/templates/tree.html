@@ -48,28 +48,33 @@
         transform: rotateX(180deg);
     }
 </style>
-<div class="tf-tree tf-ancestor-tree">
-    <ul>
-        <li>
-            <span class="tf-nc"><span class="node-text">1</span></span>
-            <ul>
-                <li>
-                    <span class="tf-nc"><span class="node-text">2</span></span>
-                    <ul>
-                        <li><span class="tf-nc"><span class="node-text">4</span></span></li>
-                        <li><span class="tf-nc"><span class="node-text">5</span></span></li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="tf-nc"><span class="node-text">3</span></span>
-                    <ul>
-                        <li><span class="tf-nc"><span class="node-text">6</span></span></li>
-                        <li><span class="tf-nc"><span class="node-text">7</span></span></li>
+        <div class="tf-tree tf-ancestor-tree" >
+            <ul th:each="tree: ${allTree}">
+                <li th:each="node: ${tree.nodeList}">
+                    <span class="tf-nc" >
+                        <span class="node-text" th:each="child_id: ${node.childId}" th:if="${#strings.toString(child_id.gender)} == 'MALE'">
+                            <h3 th:text="${child_id.member}">child</h3>
+                        </span>
+                    </span>
+                    <ul >
+                        <li >
+                    <span class="tf-nc" >
+                        <span class="node-text" th:each="parent_id: ${node.parentId}" th:if="${#strings.toString(parent_id.gender)} == 'MALE'">
+                            <h3 th:text="${parent_id.member}"></h3>
+                        </span>
+                    </span>
+                        </li>
+                        <li>
+                            <span class="tf-nc" >
+                               <span class="node-text" th:each="parent_id: ${node.parentId}" th:if="${#strings.toString(parent_id.gender)} == 'FEMALE'">
+                                  <h3 th:text="${parent_id.member}"></h3>
+                               </span>
+                          </span>
+                        </li>
                     </ul>
                 </li>
             </ul>
-        </li>
-    </ul>
+
 </div>
 
 <!--<div class="body genealogy-body genealogy-scroll">-->
