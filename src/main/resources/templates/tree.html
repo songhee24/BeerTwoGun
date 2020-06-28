@@ -37,75 +37,95 @@
 <!--            <br>-->
 <!--            <button type="submit">Отправить</button>-->
 <!--        </form>-->
+<style>
+    /* make the nodes round and change their background-color */
+    .tf-ancestor-tree { position: relative; }
+    .tf-ancestor-tree > ul { transform: rotateX(180deg); }
+    .tf-ancestor-tree li ul { margin-bottom: 1em; }
 
-<div class="body genealogy-body genealogy-scroll">
-    <div class="genealogy-tree">
-        <ul>
-            <li>
-            <a href="javascript:void(0);">
-                <div class="member-view-box">
-                    <div class="member-image" th:each="tree: ${allTree}">
-                        <div class="member-details"th:each="node: ${tree.nodeList}">
-                            <div th:each="parent_id: ${node.parentId}">
-                                <span th:if="${#strings.toString(parent_id.gender)} == 'MALE'">
-                                    <h3 th:text="${parent_id.member}"></h3>
-                                </span>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
+    .node-text {
+        display: inline-block;
+        transform: rotateX(180deg);
+    }
+</style>
+<div class="tf-tree tf-ancestor-tree">
+    <ul>
+        <li>
+            <span class="tf-nc"><span class="node-text">1</span></span>
+            <ul>
                 <li>
-            <a href="javascript:void(0);">
-                <div class="member-view-box">
-                    <div class="member-image" th:each="tree: ${allTree}">
-                        <div class="member-details"th:each="node: ${tree.nodeList}">
-                            <div th:each="parent_id: ${node.parentId}">
-                    <span th:if="${#strings.toString(parent_id.gender)} == 'FEMALE'">
-                        <h3 th:text="${parent_id.member}"></h3>
-                    </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
+                    <span class="tf-nc"><span class="node-text">2</span></span>
+                    <ul>
+                        <li><span class="tf-nc"><span class="node-text">4</span></span></li>
+                        <li><span class="tf-nc"><span class="node-text">5</span></span></li>
+                    </ul>
                 </li>
+                <li>
+                    <span class="tf-nc"><span class="node-text">3</span></span>
+                    <ul>
+                        <li><span class="tf-nc"><span class="node-text">6</span></span></li>
+                        <li><span class="tf-nc"><span class="node-text">7</span></span></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
 
-<!--                <ul class="active">-->
-<!--                    <li>-->
-<!--                        <a href="javascript:void(0);">-->
-<!--                            <div class="member-view-box">-->
-<!--                                <div class="member-image">-->
-<!--                                    <img src="https://image.flaticon.com/icons/svg/145/145867.svg" alt="Member">-->
-<!--                                    <div class="member-details">-->
-<!--                                        <h3>Member 1</h3>-->
-<!--                                    </div>-->
+<!--<div class="body genealogy-body genealogy-scroll">-->
+<!--    <div class="genealogy-tree">-->
+<!--        <ul>-->
+<!--            <li>-->
+<!--            <a href="javascript:void(0);">-->
+<!--                <div class="member-view-box">-->
+<!--                    <div class="member-image" th:each="tree: ${allTree}">-->
+<!--                        <div class="member-details"th:each="node: ${tree.nodeList}">-->
+<!--                            <div th:each="parent_id: ${node.parentId}">-->
+<!--                                <span th:if="${#strings.toString(parent_id.gender)} == 'MALE'">-->
+<!--                                    <h3 th:text="${parent_id.member}"></h3>-->
+<!--                                </span>-->
+<!--                        </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--                <li>-->
+<!--            <a href="javascript:void(0);">-->
+<!--                <div class="member-view-box">-->
+<!--                    <div class="member-image" th:each="tree: ${allTree}">-->
+<!--                        <div class="member-details"th:each="node: ${tree.nodeList}">-->
+<!--                            <div th:each="parent_id: ${node.parentId}">-->
+<!--                    <span th:if="${#strings.toString(parent_id.gender)} == 'FEMALE'">-->
+<!--                        <h3 th:text="${parent_id.member}"></h3>-->
+<!--                    </span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--                </li>-->
+<!--            -->
+<!--            </li>-->
+<!--        </ul>-->
+<!--        <ul>-->
+<!--            <li>-->
+<!--                <a href="javascript:void(0);">-->
+<!--                    <div class="member-view-box">-->
+<!--                        <div class="member-image" th:each="tree: ${allTree}">-->
+<!--                            <div class="member-details"th:each="node: ${tree.nodeList}">-->
+<!--                                <div th:each="parent_id: ${node.parentId}">-->
+<!--                            <span th:if="${#strings.toString(parent_id.gender)} == 'MALE'">-->
+<!--                                <h3 th:text="${parent_id.member}"></h3>-->
+<!--                            </span>-->
 <!--                                </div>-->
 <!--                            </div>-->
-<!--                        </a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <a href="javascript:void(0);">
-                    <div class="member-view-box">
-                        <div class="member-image" th:each="tree: ${allTree}">
-                            <div class="member-details"th:each="node: ${tree.nodeList}">
-                                <div th:each="parent_id: ${node.parentId}">
-                            <span th:if="${#strings.toString(parent_id.gender)} == 'MALE'">
-                                <h3 th:text="${parent_id.member}"></h3>
-                            </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</div>-->
 
 
 </body>
