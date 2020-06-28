@@ -59,10 +59,6 @@ public class User implements UserDetails {
     )
     private Collection<Role> roles;
 
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "tree_id")
-    Node nodeId;
 
     public String getUserName() {
         return userName;

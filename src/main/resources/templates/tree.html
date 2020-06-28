@@ -16,27 +16,7 @@
 </head>
 <body>
 
-        <form th:action="@{/individual/create}" method="post" th:object="${individual}">
-            <span>member:</span>
-            <input type="text" th:field="*{member}"  required="required" >
-            <br>
-            <span>firstName:</span>
-            <input type="text" th:field="*{firstName}" required="required">
-            <br>
-            <span>lastName:</span>
-            <input  type="text" th:field="*{lastName}" required="required">
-            <br>
-            <span>birthDate:</span>
-            <input type="date" placeholder="yyyy-MM-dd"  th:field="*{birthDate}"  required="required">
-            <br>
-            <span>gender:</span>
-            <input type="text" th:field="*{gender}"  required="required">
-            <br>
-            <span>inn:</span>
-            <input type="text" th:field="*{inn}" required="required">
-            <br>
-            <button type="submit">Отправить</button>
-        </form>
+
 
         <div class="tree">
             <ul th:each="tree: ${allTree}">

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <form th:action="@{/individual/create}" method="post" th:object="${individual}">
+            <span>name First:</span>
+            <input type="text" th:field="*{nameFirst}"  required="required" >
+            <br>
+            <span>name Last:</span>
+            <input type="text" th:field="*{nameLast}" required="required">
+            <br>
+            <span>date Birth:</span>
+            <input type="date" placeholder="yyyy-MM-dd"  th:field="*{dateBirth}"  required="required">
+            <br>
+            <span>date Death:</span>
+            <input type="date" placeholder="yyyy-MM-dd"  th:field="*{dateDeath}" >
+            <br>
+            <input th:field="*{gender}" type="radio" name="gender" value="male"> Male
+            <br>
+            <input  th:field="*{gender}" type="radio" name="gender" value="female"> Female
+            <br>
+            <span>place Birth:</span>
+            <input  type="text" th:field="*{placeBirth}" required="required">
+            <br>
+            <span>place Death:</span>
+            <textarea th:field="*{placeDeath}"></textarea>
+            <br>
+            <span>cause Death:</span>
+            <textarea th:field="*{causeDeath}"></textarea>
+            <br>
+            <span>some story:</span>
+            <textarea th:field="*{text}"></textarea>
+            <br>r>
+            <button type="submit">Отправить</button>
+        </form>
+</body>
+</html>

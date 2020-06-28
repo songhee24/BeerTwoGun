@@ -18,11 +18,14 @@ public class IndividualController {
         return individualService.save(individual);
     }
 
-
+    @GetMapping
+    public String getIndividualPage(){
+        return "/family";
+    }
 
     @PostMapping("create")
     public String individualCreate(@ModelAttribute Individual individual) {
-        individualService.individualPerson(individual);
+        individualService.createIndividual(individual);
         return "redirect:/tree";
     }
 }

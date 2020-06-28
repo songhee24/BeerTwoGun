@@ -1,5 +1,6 @@
 package com.BeerTwoGun.entity;
 
+import com.BeerTwoGun.entity.typesEntity.OccupationType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -31,5 +32,5 @@ public class Occupation {
             name = "occupations_type",
             joinColumns = @JoinColumn(name = "occupation_id"),
             inverseJoinColumns = @JoinColumn(name = "occupation_type_id"))
-    Set<Occupation> occupations;
+    Set<OccupationType> occupationTypes;
 }

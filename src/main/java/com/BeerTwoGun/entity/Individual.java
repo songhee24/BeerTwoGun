@@ -25,9 +25,6 @@ public class Individual {
     Long id;
 
 
-    @Column(name = "member")
-    String member;
-
     @Column(name = "name_first")
     String nameFirst;
 
@@ -40,7 +37,8 @@ public class Individual {
     LocalDate dateBirth;
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    @Column(name = "date_birth")
+    @Basic(optional = false)
+    @Column(name = "date_death")
     LocalDate dateDeath;
 
     @Column(name = "gender")
