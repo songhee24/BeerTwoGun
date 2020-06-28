@@ -52,4 +52,9 @@ public class TreeServiceImpl implements TreeService {
         tree.setNodeList(nodes);
         return save(tree);
     }
+
+    @Override
+    public List<Tree> getAllByTreeParentIdIsNotNull() {
+        return treeRepository.getAllByTreeParentIdIsNotNull();
+    }
 }

@@ -8,7 +8,7 @@
 <!--            crossorigin="anonymous">-->
 <!--    </script>-->
 <!--  Library  -->
-    <link rel="stylesheet" href="https://unpkg.com/treeflex/dist/css/treeflex.css">
+<!--    <link rel="stylesheet" href="https://unpkg.com/treeflex/dist/css/treeflex.css">-->
 <!--    <link rel="stylesheet" href="../static/css/tree.css">-->
     <link rel="stylesheet" type="text/css"  th:href="@{/css/tree.css}" >
     <meta charset="UTF-8">
@@ -16,28 +16,75 @@
 </head>
 <body>
 
-<!--        <form th:action="@{/person/create}" method="post" th:object="${person}">-->
-<!--            <span>member:</span>-->
-<!--            <input type="text" th:field="*{member}"  required="required" >-->
-<!--            <br>-->
-<!--            <span>firstName:</span>-->
-<!--            <input type="text" th:field="*{firstName}" required="required">-->
-<!--            <br>-->
-<!--            <span>lastName:</span>-->
-<!--            <input  type="text" th:field="*{lastName}" required="required">-->
-<!--            <br>-->
-<!--            <span>birthDate:</span>-->
-<!--            <input type="date" placeholder="yyyy-MM-dd"  th:field="*{birthDate}"  required="required">-->
-<!--            <br>-->
-<!--            <span>gender:</span>-->
-<!--            <input type="text" th:field="*{gender}"  required="required">-->
-<!--            <br>-->
-<!--            <span>inn:</span>-->
-<!--            <input type="text" th:field="*{inn}" required="required">-->
-<!--            <br>-->
-<!--            <button type="submit">Отправить</button>-->
-<!--        </form>-->
-<style>
+        <form th:action="@{/person/create}" method="post" th:object="${person}">
+            <span>member:</span>
+            <input type="text" th:field="*{member}"  required="required" >
+            <br>
+            <span>firstName:</span>
+            <input type="text" th:field="*{firstName}" required="required">
+            <br>
+            <span>lastName:</span>
+            <input  type="text" th:field="*{lastName}" required="required">
+            <br>
+            <span>birthDate:</span>
+            <input type="date" placeholder="yyyy-MM-dd"  th:field="*{birthDate}"  required="required">
+            <br>
+            <span>gender:</span>
+            <input type="text" th:field="*{gender}"  required="required">
+            <br>
+            <span>inn:</span>
+            <input type="text" th:field="*{inn}" required="required">
+            <br>
+            <button type="submit">Отправить</button>
+        </form>
+
+        <div class="tree">
+            <ul th:each="tree: ${allTree}">
+                <li>
+                    <div class="family" th:each="node: ${tree.nodeList}" >
+                        <div class="person child male">
+                            <div class="name">htGrandfather</div>
+                        </div>
+                <div class="parent">
+                    <div class="person female">
+                        <div class="name"></div>
+                    </div>
+                    <ul >
+                        <li  >
+                            <div class="family" style="width: 344px" >
+                                <div class="person child female"  >
+                                        <div class="name" th:each="parent_id: ${node.parentId}" th:if="${#strings.toString(parent_id.gender)} == 'MALE'" >
+                                            <p th:text="${parent_id.member}"></p>
+                                        </div>
+                                </div>
+                                <div class="parent" >
+                                    <div class="person male" >
+                                        <div class="name" th:each="parent_id: ${node.parentId}"  th:if="${#strings.toString(parent_id.gender)} == 'FEMALE'">
+                                            <p th:text="${parent_id.member}"></p>
+                                        </div>
+                                    </div>
+                                    <ul>
+                                        <li th:each="child_id: ${node.childId}"  th:if="${#strings.toString(child_id.gender)} == 'MALE'">
+                                            <div class="person child male">
+                                                <div class="name"><p th:text="${child_id.member}"></p></div>
+                                            </div>
+                                        </li>
+<!--                                        <li>-->
+<!--                                            <div class="person child female">-->
+<!--                                                <div class="name">Sister</div>-->
+<!--                                            </div>-->
+<!--                                        </li>-->
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+<!--<style>
     /* make the nodes round and change their background-color */
     .tf-ancestor-tree { position: relative; }
     .tf-ancestor-tree > ul { transform: rotateX(180deg); }
@@ -50,23 +97,30 @@
 </style>
         <div class="tf-tree tf-ancestor-tree" >
             <ul th:each="tree: ${allTree}">
-                <li th:each="node: ${tree.nodeList}">
-                    <span class="tf-nc" >
-                        <span class="node-text" th:each="child_id: ${node.childId}" th:if="${#strings.toString(child_id.gender)} == 'MALE'">
-                            <h3 th:text="${child_id.member}">child</h3>
+                <li th:each="node: ${tree.nodeList}" >
+                <ul th:each="node: ${tree.nodeList}">
+                    <li class="node-text" th:each="child_id: ${node.childId}">
+                        <span class="tf-nc" th:if="${#strings.toString(child_id.gender)} == 'MALE'">
+                            <span>
+                                <h3 th:text="${child_id.member}">child</h3>
+                            </span>
                         </span>
-                    </span>
-                    <ul >
+                    </li>
+                </ul>
+
+                    <ul>
                         <li >
                     <span class="tf-nc" >
-                        <span class="node-text" th:each="parent_id: ${node.parentId}" th:if="${#strings.toString(parent_id.gender)} == 'MALE'">
+                        <span class="node-text" th:each="parent_id: ${node.parentId}"
+                              th:if="${#strings.toString(parent_id.gender)} == 'MALE'">
                             <h3 th:text="${parent_id.member}"></h3>
                         </span>
                     </span>
                         </li>
                         <li>
                             <span class="tf-nc" >
-                               <span class="node-text" th:each="parent_id: ${node.parentId}" th:if="${#strings.toString(parent_id.gender)} == 'FEMALE'">
+                               <span class="node-text" th:each="parent_id: ${node.parentId}"
+                                     th:if="${#strings.toString(parent_id.gender)} == 'FEMALE'">
                                   <h3 th:text="${parent_id.member}"></h3>
                                </span>
                           </span>
@@ -75,7 +129,7 @@
                 </li>
             </ul>
 
-</div>
+</div>-->
 
 <!--<div class="body genealogy-body genealogy-scroll">-->
 <!--    <div class="genealogy-tree">-->

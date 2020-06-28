@@ -24,6 +24,6 @@ public class PersonController {
     @PostMapping("create")
     public String personCreate(@ModelAttribute Person person) {
         personService.createPerson(person);
-        return "/tree";
+        return "redirect:/tree";
     }
 }

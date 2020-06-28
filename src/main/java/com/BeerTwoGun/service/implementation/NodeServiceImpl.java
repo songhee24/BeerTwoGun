@@ -43,7 +43,7 @@ public class NodeServiceImpl implements NodeService {
                     List<Long> cId = child_Id.stream().filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
                     children.add(personService.findById(cId.get(c)));
                 } else {
-                    node.setParentId(parents);
+                    node.setChildId(children);
                     return save(node);
                 }
             }

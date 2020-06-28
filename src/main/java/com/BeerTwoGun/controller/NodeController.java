@@ -32,6 +32,7 @@ public class NodeController {
 
     @GetMapping
     public String getTree(Model model){
+        model.addAttribute("person",new Person());
         model.addAttribute("allTree",treeService.findAll());
         return "/tree";
     }

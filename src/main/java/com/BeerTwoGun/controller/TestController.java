@@ -21,6 +21,11 @@ public class TestController {
     @Autowired
     private TreeService treeService;
 
+    @PostMapping
+    public Node save(Node node){
+        return node;
+    }
+
 //    @RequestMapping(value = "/nodeTree/{parentId}&&/{childId}",method = RequestMethod.POST)
     @RequestMapping(path = {"" +
             "/nodeTree/",

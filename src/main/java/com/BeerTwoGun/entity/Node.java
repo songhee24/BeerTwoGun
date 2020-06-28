@@ -24,13 +24,11 @@ public class Node {
     @Column(name = "id")
      Long Id;
 
-    @OneToMany(cascade = CascadeType.ALL
-            ,fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "parent_id")
     List<Person> parentId;
 
-    @OneToMany(cascade = CascadeType.ALL
-            ,fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "child_id")
     List<Person> childId;
 
