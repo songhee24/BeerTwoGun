@@ -67,11 +67,13 @@ public class IndividualServiceImpl implements IndividualService {
     @Override
     public Individual createIndividual(Individual individual) {
         String sDate = individual.getDateBirth().toString();
-        String sDeath = individual.getDateDeath().toString();
+        if (individual.getDateDeath() != null){
+            String sDeath = individual.getDateDeath().toString();
+            LocalDate dateD = DateConvert.getDateFromString(sDeath);
+            individual.setDateDeath(dateD);
+        }
         LocalDate dateB = DateConvert.getDateFromString(sDate);
-        LocalDate dateD = DateConvert.getDateFromString(sDeath);
         individual.setDateBirth(dateB);
-        individual.setDateDeath(dateD);
         return save(individual);
     }
 }

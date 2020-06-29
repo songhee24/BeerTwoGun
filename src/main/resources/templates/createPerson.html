@@ -2,10 +2,13 @@
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org">
 <head>
+<!--    <link rel="stylesheet" href="../static/css/createPage.css">-->
+    <link rel="stylesheet" th:href="@{/css/createPage.css}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<h3>create person</h3>
         <form th:action="@{/individual/create}" method="post" th:object="${individual}">
             <span>name First:</span>
             <input type="text" th:field="*{nameFirst}"  required="required" >
@@ -19,9 +22,10 @@
             <span>date Death:</span>
             <input type="date" placeholder="yyyy-MM-dd"  th:field="*{dateDeath}" >
             <br>
-            <input th:field="*{gender}" type="radio" name="gender" value="male"> Male
-            <br>
-            <input  th:field="*{gender}" type="radio" name="gender" value="female"> Female
+            <select name="color" th:field="*{gender}">
+                <option th:each="genders : ${T(com.BeerTwoGun.enums.Gender).values()}"
+                        th:value="${genders}" th:text="${genders}"></option>
+            </select>
             <br>
             <span>place Birth:</span>
             <input  type="text" th:field="*{placeBirth}" required="required">
@@ -37,5 +41,6 @@
             <br>r>
             <button type="submit">Отправить</button>
         </form>
+<a th:href="@{/family}">create family</a>
 </body>
 </html>

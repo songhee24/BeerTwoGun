@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>create family</h3>
+<div id="test" class="popup" style="display:none;">
+    <tr th:each="indi: ${people}">
+        <td th:text="${indi.id}"></td>
+        <td th:text="${indi.nameFirst}"></td>
+        <td>
+            <a th:href="@{'/family/' + ${indi.id}}">add</a>
+            <a th:href="@{ '/words/delete/' + ${indi.id}}">delete</a>
+        </td>
+    </tr>
+    <div class="cancel" onclick="closePopup();"></div>
+</div>
+
+<form th:action="@{/family/create}" method="post" th:object="${family}">
+    <span>add parent</span>
+    <div class="click" onClick="openPopup();">+</div>
+    <br>
+    <span>name Last:</span>
+    <input type="text" th:object="${familyHead}" th:field="*{familyHead1Id}" required="required">
+    <br>
+    <span>name Last:</span>
+    <input type="text" th:field="*{familyName}" required="required">
+    <br>
+    <span>familyDescription:</span>
+    <input  type="text" th:field="*{familyDescription}" required="required">
+    <br>
+    <span>familyDateStart:</span>
+    <input type="date" placeholder="yyyy-MM-dd"  th:field="*{familyDateStart}"  required="required">
+    <br>
+    <span>familyDateEnd:</span>
+    <input type="date" placeholder="yyyy-MM-dd"  th:field="*{familyDateEnd}" >
+    <br>
+    <span>familyNotesText:</span>
+    <textarea th:field="*{familyNotesText}"></textarea>
+    <br>r>
+    <button type="submit">Отправить</button>
+</form>
+<script>
+    function openPopup() {
+        document.getElementById('test').style.display = 'block';
+        // $('#test').fadeIn(1000);
+    }
+
+    function closePopup() {
+        document.getElementById('test').style.display = 'none';
+        // $('#test').fadeOut(500);
+    }
+</script>
+</body>
+</html>

@@ -37,7 +37,6 @@ public class Individual {
     LocalDate dateBirth;
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    @Basic(optional = false)
     @Column(name = "date_death")
     LocalDate dateDeath;
 
