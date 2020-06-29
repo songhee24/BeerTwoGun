@@ -1,0 +1,12 @@
+table td {
+    text-align: center;
+}
+table {
+    width: 300px;
+}
+table td {
+    border: 1px solid;
+}
+table td.centered {
+    text-align: center;
+}

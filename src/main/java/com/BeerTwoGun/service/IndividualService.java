@@ -7,4 +7,6 @@ public interface IndividualService extends BaseService<Individual> {
 
     Individual findByIdAndIfObjectIsNull(Long id);
 
+    Long getIdByIndividualId(Long id);
+
 }

@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface IndividualRepository extends JpaRepository<Individual,Long> {
     Individual getById(Long id);
 
+
 }
 

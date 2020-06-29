@@ -65,6 +65,12 @@ public class IndividualServiceImpl implements IndividualService {
     }
 
     @Override
+    public Long getIdByIndividualId(Long id) {
+        Individual individual = findById(id);
+        return individual.getId();
+    }
+
+    @Override
     public Individual createIndividual(Individual individual) {
         String sDate = individual.getDateBirth().toString();
         if (individual.getDateDeath() != null){

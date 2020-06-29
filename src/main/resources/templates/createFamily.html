@@ -2,30 +2,44 @@
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="../static/css/createFamily.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <h3>create family</h3>
-<div id="test" class="popup" style="display:none;">
-    <tr th:each="indi: ${people}">
-        <td th:text="${indi.id}"></td>
-        <td th:text="${indi.nameFirst}"></td>
-        <td>
-            <a th:href="@{'/family/' + ${indi.id}}">add</a>
-            <a th:href="@{ '/words/delete/' + ${indi.id}}">delete</a>
-        </td>
-    </tr>
-    <div class="cancel" onclick="closePopup();"></div>
-</div>
+<!--<div id="test" class="popup" style="display:none;">-->
+
+
+<!--    <div class="cancel" onclick="closePopup();"></div>-->
+<!--</div>-->
 
 <form th:action="@{/family/create}" method="post" th:object="${family}">
-    <span>add parent</span>
-    <div class="click" onClick="openPopup();">+</div>
-    <br>
-    <span>name Last:</span>
-    <input type="text" th:object="${familyHead}" th:field="*{familyHead1Id}" required="required">
-    <br>
+    <table>
+        <tr th:each="indi: ${people}">
+            <td th:text="${indi.id}"></td>
+            <td th:text="${indi.nameFirst}"></td>
+            <td>
+                <!--            <a th:href="@{'/head1/' + ${indi.id}}">add</a>-->
+                <!--            <a th:href="@{'/head2/' + ${indi.id}}">add</a>-->
+<!--                <input type="checkbox" name="head1id"  th:value="${indi.id}">-->
+<!--                <input type="checkbox"  name="head2id" th:value="${indi.id}">-->
+                <a th:href="@{ 'family/addId/' + ${indi.id}}">add person</a>
+                <a th:href="@{ 'family/addId2/' + ${indi.id}}">add person</a>
+
+                <!--            <a th:href="@{ '/words/delete/' + ${indi.id}}">delete</a>-->
+            </td>
+        </tr>
+    </table>
+<!--    <span>add parent</span>-->
+<!--    <div class="click" onClick="openPopup();">+</div>-->
+<!--    <span>father or mother:</span>-->
+<!--    <input type="text" th:with="name1=${individual.nameFirst}"  th:value="${name1}"  required="required">-->
+<!--    <br>-->
+<!--    <br>-->
+<!--    <span>father or mother:</span>-->
+<!--    <input type="text" th:with="name2=${individual.nameFirst}"  th:value="${name2}"  required="required">-->
+<!--    <br>-->
     <span>name Last:</span>
     <input type="text" th:field="*{familyName}" required="required">
     <br>
