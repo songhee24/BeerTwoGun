@@ -2,6 +2,7 @@ package com.BeerTwoGun.entity;
 
 import com.BeerTwoGun.entity.typesEntity.IndividualRoleType;
 import com.BeerTwoGun.entity.typesEntity.RelationshipType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,7 +24,7 @@ public class Relationship {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "relationship_type_id")
     RelationshipType relationshipType;
 
@@ -48,12 +49,12 @@ public class Relationship {
 //            inverseJoinColumns = @JoinColumn(name = "individual_id"))
 //    Set<Individual> individualHead2;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "relationship_individual_head_1_roles",
-            joinColumns = @JoinColumn(name = "relationship_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_type_id"))
-    Set<IndividualRoleType> individualRoleTypes1;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "relationship_individual_head_1_roles",
+//            joinColumns = @JoinColumn(name = "relationship_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_type_id"))
+//    Set<IndividualRoleType> individualRoleTypes1;
 
 //    @ManyToMany(cascade = CascadeType.ALL)
 //    @JoinTable(
@@ -62,11 +63,13 @@ public class Relationship {
 //            inverseJoinColumns = @JoinColumn(name = "role_type_id"))
 //    Set<IndividualRoleType> individualRoleTypes2;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    /*@DateTimeFormat(pattern="yyyy-MM-dd")*/
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "relationship_date_start")
     LocalDate relationshipDateStart;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+   /* @DateTimeFormat(pattern="yyyy-MM-dd")*/
+   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "relationship_date_end")
     LocalDate relationshipDateEnd;
 

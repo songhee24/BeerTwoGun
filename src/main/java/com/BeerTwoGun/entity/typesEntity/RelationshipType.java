@@ -19,7 +19,7 @@ public class RelationshipType {
     Long id;
 
     @Column(name = "relationship_type_name")
-    String relationshipTypeName;
+        String relationshipTypeName;
 
     @Column(name = "relationship_type_note")
     String relationshipTypeNote;
