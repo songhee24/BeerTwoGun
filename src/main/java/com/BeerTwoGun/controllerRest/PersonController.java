@@ -17,8 +17,7 @@ public class PersonController {
     private IndividualService individualService;
 
     @PostMapping
-    public ResponseEntity<String> create(@RequestBody @Valid Individual individual){
-
+    public ResponseEntity<Individual> create(@RequestBody @Valid Individual individual){
         return new ResponseEntity<>( individualService.createIndividual(individual), HttpStatus.OK);
     }
 }

@@ -44,10 +44,21 @@ public class FamilyServiceImpl implements FamilyService {
 
     @Override
     public Family create(Family family,Long head1id,Long head2id) {
-        Individual head1 = individualService.findById(head1id);
-        Individual head2 = individualService.findById(head2id);
+        System.err.println("head1service:" + head1id);
+        System.err.println("head2service:" + head2id);
+        System.err.println();
+        Individual head1 = new Individual();
+        Individual head2 = new Individual();
+             if (head1id != null){
+                 head1 = individualService.findById(head1id);
+             }
+             if (head2id != null){
+                 head2 = individualService.findById(head2id);
+             }
+
+
         family.setFamilyHead1Id(head1);
-        family.setFamilyHead1Id(head2);
+        family.setFamilyHead2Id(head2);
         return save(family);
     }
 }

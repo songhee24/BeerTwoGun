@@ -41,12 +41,12 @@ public class Relationship {
             inverseJoinColumns = @JoinColumn(name = "individual_id"))
     Set<Individual> individualHead1;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "individual_2_heads",
-            joinColumns = @JoinColumn(name = "relationship_id"),
-            inverseJoinColumns = @JoinColumn(name = "individual_id"))
-    Set<Individual> individualHead2;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "individual_2_heads",
+//            joinColumns = @JoinColumn(name = "relationship_id"),
+//            inverseJoinColumns = @JoinColumn(name = "individual_id"))
+//    Set<Individual> individualHead2;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -55,12 +55,12 @@ public class Relationship {
             inverseJoinColumns = @JoinColumn(name = "role_type_id"))
     Set<IndividualRoleType> individualRoleTypes1;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "relationship_individual_head_2_roles",
-            joinColumns = @JoinColumn(name = "relationship_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_type_id"))
-    Set<IndividualRoleType> individualRoleTypes2;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "relationship_individual_head_2_roles",
+//            joinColumns = @JoinColumn(name = "relationship_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_type_id"))
+//    Set<IndividualRoleType> individualRoleTypes2;
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name = "relationship_date_start")
