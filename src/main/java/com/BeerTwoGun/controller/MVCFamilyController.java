@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class FamilyController {
+public class MVCFamilyController {
     @Autowired
     private IndividualService individualService;
     @Autowired

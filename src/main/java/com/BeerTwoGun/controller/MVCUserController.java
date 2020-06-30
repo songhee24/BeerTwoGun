@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/user/")
-public class UserController {
+public class MVCUserController {
     @Autowired
     private UserService userService;
 

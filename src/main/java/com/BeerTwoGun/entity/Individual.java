@@ -8,6 +8,8 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,21 +26,27 @@ public class Individual {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-
+    @NotEmpty(message = "Please provide a first name")
+    @Size(min = 5, message="Name should have atleast 5 characters")
     @Column(name = "name_first")
     String nameFirst;
 
+    @NotEmpty(message = "Please provide a last name")
+    @Size(min = 5, message="Name should have atleast 5 characters")
     @Column(name = "name_last")
     String nameLast;
 
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+//    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name = "date_birth")
     LocalDate dateBirth;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+//    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "date_death")
     LocalDate dateDeath;
+
 
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
@@ -55,6 +63,5 @@ public class Individual {
 
     @Column(name = "individual_notes")
     String text;
-
 
 }

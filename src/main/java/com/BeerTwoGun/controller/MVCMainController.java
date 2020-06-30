@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Locale;
 
 @Controller
-public class MainController {
+public class MVCMainController {
     @RequestMapping("/")
     public String root(Locale locale) {
         return "redirect:/index.html";

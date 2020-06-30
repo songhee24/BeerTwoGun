@@ -61,36 +61,41 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.authorizeRequests().antMatchers("/user/**").not().fullyAuthenticated();
-//        http.authorizeRequests().antMatchers("/user/login").permitAll();
-//                .antMatchers("/user/create").permitAll()
+        http.cors()
+                .and()
+                .authorizeRequests().antMatchers("/user/").not().fullyAuthenticated()
+                .antMatchers( "/person").hasRole("USER")
+//                .anyRequest()
+//                .authenticated()
+                .and()
+                .httpBasic()
+                .and()
+                .csrf().disable();
+/*        http.authorizeRequests().antMatchers("/user/login").permitAll();
+                .antMatchers("/user/create").permitAll()
         http.authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN");
-//        http.authorizeRequests().antMatchers("/person/**").hasRole("USER");
+        http.authorizeRequests().antMatchers("/person/**").hasRole("USER");
         http.authorizeRequests().antMatchers("/resources/**").permitAll();
-//                .anyRequest().authenticated()
-
-
-        http.authorizeRequests()
+                .anyRequest().authenticated()*/
+/*        http.authorizeRequests()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
-//                .loginProcessingUrl("/login")
-                .usernameParameter("username")//
+                .loginProcessingUrl("/login")
+                .usernameParameter("username")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/home", true)
                 .permitAll()
-//                .failureUrl("/login?error")//
+                .failureUrl("/login?error")//
                 .and()
                 .logout()
-                .permitAll()
+                .permitAll();
                 .logoutSuccessUrl("/login")
-                .and()
                 .sessionManagement()
                 .maximumSessions(1)
                 .maxSessionsPreventsLogin(true)
-                .sessionRegistry(sessionRegistry());
+                .sessionRegistry(sessionRegistry());*/
     }
 
 

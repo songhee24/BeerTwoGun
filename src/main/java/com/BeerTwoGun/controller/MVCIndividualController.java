@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/individual")
-public class IndividualController {
+public class MVCIndividualController {
     @Autowired
     private IndividualService individualService;
 

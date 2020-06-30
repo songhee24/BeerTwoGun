@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/tree")
-public class NodeController {
+public class MVCNodeController {
 //    @Autowired
 //    private NodeService nodeService;
 //

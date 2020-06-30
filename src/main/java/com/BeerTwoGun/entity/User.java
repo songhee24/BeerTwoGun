@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 
@@ -27,23 +28,23 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @NotNull
-    @Size(min = 8, max = 30)
+    @NotEmpty(message = "Please provide a userName")
+    @Size(min = 5, message="Name should have atleast 5 characters")
     @Column(name = "user_name")
     String userName;
 
-    @NotNull
+    @NotEmpty(message = "Please provide a email")
     @Column(name = "email")
     @Email(message = "Email should be valid")
     String email;
 
-    @NotNull
-//    @Size(min = 8, max = 30)
+    @NotEmpty(message = "Please provide a password")
+    @Size(min=7, message="Passport should have atleast 7 characters")
     @Column(name = "password")
     String password;
 
-    @NotNull
-//    @Size(min = 8, max = 30)
+    @NotEmpty(message = "Please provide a confirm password")
+    @Size(min=7, message="Passport should have atleast 7 characters")
     @Column(name = "confirm_password")
     String confirmPassword;
 

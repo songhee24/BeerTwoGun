@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @RestController
 
-public class TestController {
+public class MVCTestController {
 //    @Autowired
 //    private NodeService nodeService;
 //
